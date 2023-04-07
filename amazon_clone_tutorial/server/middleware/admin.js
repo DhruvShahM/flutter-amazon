@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
-
-const auth = async (req, res, next) => {
+const User=require('../models/user');
+const admin=async(req,res,next)=>{
     try {
         const token = req.header('x-auth-token');
 
@@ -12,6 +12,13 @@ const auth = async (req, res, next) => {
         if (!verified)
             return res.status(401).json({ msg: 'Token verfication failed,authorization denied' });
 
+        const user=await User.findById(verified.id);
+        
+        if(user.type==='user' || user.type==='selller'){
+            return res.status(401).json({msg:'You are not admin!'});
+        }
+
+
         req.user = verified.id;
         req.token = token;
         next();
@@ -19,6 +26,6 @@ const auth = async (req, res, next) => {
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
-};
+}
 
-module.exports=auth;
+module.exports=admin;

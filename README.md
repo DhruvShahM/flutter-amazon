@@ -12,3 +12,7 @@ user credentials:
 	"email":"dhruv@gmail.com",
 	"password":"dhruv123"
 }
+
+
+Cloudinary use for the file uploading:
+https://console.cloudinary.com/console/c-c79c60b0ef40b7092082792740f3f6/media_library/search?q=

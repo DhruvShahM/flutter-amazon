@@ -1,34 +1,28 @@
+import 'package:amazon_clone_tutorial/common/widgets/stars.dart';
 import 'package:amazon_clone_tutorial/constants/global_variables.dart';
-import 'package:amazon_clone_tutorial/features/home/widgets/top_categories.dart';
-import 'package:amazon_clone_tutorial/features/home/widgets/address_box.dart';
-import 'package:amazon_clone_tutorial/features/home/widgets/carousel_image.dart';
-import 'package:amazon_clone_tutorial/features/home/widgets/deal_of_days.dart';
 import 'package:amazon_clone_tutorial/features/search/screens/search_screen.dart';
+import 'package:amazon_clone_tutorial/models/product.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatefulWidget {
-  static const String routeName = '/home';
-  const HomeScreen({Key? key}) : super(key: key);
+class ProductDetailScreen extends StatefulWidget {
+  static const String routeName = '/product-details';
+
+  final Product product;
+
+  const ProductDetailScreen({Key? key, required this.product})
+      : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<ProductDetailScreen> createState() => _ProductDetailScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-// late FocusNode focusNode;
-// @override
-//   void initState() {
-//     super.initState();
-//     focusNode = FocusNode();
-//   }
-
-void navigateToSearchQuery(String query){
-  Navigator.pushNamed(context, SearchScreen.routeName,arguments: query);
-}
+class _ProductDetailScreenState extends State<ProductDetailScreen> {
+  void navigateToSearchQuery(String query) {
+    Navigator.pushNamed(context, SearchScreen.routeName, arguments: query);
+  }
 
   @override
   Widget build(BuildContext context) {
-    // final user = Provider.of<UserProvider>(context).user;
     return Scaffold(
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(60),
@@ -94,17 +88,19 @@ void navigateToSearchQuery(String query){
         ),
         body: SingleChildScrollView(
           child: Column(
-            children: const [
-              AddressBox(),
-              SizedBox(
-                height: 10,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [Text(widget.product.id!), const Stars(rating: 4)],
+                ),
               ),
-              TopCategories(),
-               SizedBox(
-                height: 10,
-              ),
-              CarouselImage(),
-              DealOfDay()
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 10),
+                child: Text(widget.product.name,style: const TextStyle(fontSize: 15),),
+                )
             ],
           ),
         ));
