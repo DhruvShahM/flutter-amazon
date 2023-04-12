@@ -5,6 +5,7 @@ const authRouter = require("./routes/auth");
 const adminRouter = require("./routes/admin");
 const mongoose = require('mongoose');
 const productRouter = require('./routes/product');
+const userRouter = require('./routes/user');
 
 const absolute=path.resolve("./.env")
 console.log(absolute);
@@ -30,6 +31,7 @@ app.use(express.json());
 app.use(authRouter);
 app.use(adminRouter);
 app.use(productRouter);
+app.use(userRouter);
 
 // Connections
 mongoose.connect(db, { useUnifiedTopology: true, useNewUrlParser: true }).then(() => {

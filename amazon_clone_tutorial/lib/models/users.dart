@@ -9,6 +9,7 @@ class User {
   final String email;
   final String type;
   final String token;
+  final List<dynamic> cart;
 
 
   User({
@@ -19,6 +20,7 @@ class User {
     required this.email,
     required this.type,
     required this.token,
+    required this.cart
   });
   
 
@@ -30,6 +32,7 @@ class User {
     String? email,
     String? type,
     String? token,
+    List<dynamic>? cart
   }) {
     return User(
       id: id ?? this.id,
@@ -39,6 +42,7 @@ class User {
       email: email ?? this.email,
       type: type ?? this.type,
       token: token ?? this.token,
+      cart: cart ?? this.cart
     );
   }
 
@@ -51,6 +55,7 @@ class User {
       'email': email,
       'type': type,
       'token': token,
+      'cart':cart
     };
   }
 
@@ -63,6 +68,7 @@ class User {
       email: map['email'] ?? '',
       type: map['type'] ?? '',
       token: map['token'] ?? '',
+      cart:List<Map<String,dynamic>>.from(map['cart']?.map((x)=>Map<String,dynamic>.from(x)))
     );
   }
 

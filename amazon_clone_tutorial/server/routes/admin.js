@@ -1,7 +1,7 @@
 const expres=require('express');
 const adminRouter=expres.Router();
 const admin=require('../middleware/admin');
-const Product = require('../models/product');
+const {Product} = require('../models/product');
 
 
 // Add Product

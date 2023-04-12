@@ -1,4 +1,5 @@
 import 'package:amazon_clone_tutorial/common/widgets/bottom_bar.dart';
+import 'package:amazon_clone_tutorial/features/address/screens/address_screen.dart';
 import 'package:amazon_clone_tutorial/features/admin/screens/add_product_screen.dart';
 import 'package:amazon_clone_tutorial/features/auth/auth_screen.dart';
 import 'package:amazon_clone_tutorial/features/home/screens/category_deal_screen.dart';
@@ -29,20 +30,27 @@ Route<dynamic> generatedRoute(RouteSettings routeSettings) {
           builder: (_) => CategoryDealsScreen(
                 category: category,
               ));
-              case SearchScreen.routeName:
+    case SearchScreen.routeName:
       var searchQuery = routeSettings.arguments as String;
       return MaterialPageRoute(
           settings: routeSettings,
           builder: (_) => SearchScreen(
                 searchQuery: searchQuery,
               ));
-               case ProductDetailScreen.routeName:
+    case ProductDetailScreen.routeName:
       var product = routeSettings.arguments as Product;
       return MaterialPageRoute(
           settings: routeSettings,
           builder: (_) => ProductDetailScreen(
                 product: product,
               ));
+    case AddressScreen.routeName:
+    var totalAmount = routeSettings.arguments as String;
+      return MaterialPageRoute(
+          settings: routeSettings, builder: (_) => AddressScreen(
+            totalAmount:totalAmount
+          ));
+
     default:
       return MaterialPageRoute(
           settings: routeSettings,
