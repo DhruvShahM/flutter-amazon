@@ -2,6 +2,7 @@
 import 'package:amazon_clone_tutorial/common/widgets/cutom_textfield.dart';
 import 'package:amazon_clone_tutorial/constants/global_variables.dart';
 import 'package:amazon_clone_tutorial/constants/utils.dart';
+import 'package:amazon_clone_tutorial/features/address/services/address_services.dart';
 import 'package:amazon_clone_tutorial/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:pay/pay.dart';
@@ -87,48 +88,6 @@ const String defaultApplePay = '''{
   }
 }''';
 
-// const _paymentItems = [
-//   PaymentItem(
-//     label: 'Total',
-//     amount: '99.99',
-//     status: PaymentItemStatus.final_price,
-//   )
-// ];
-
-// const String defaultAppPay='''{
-//     "provider": "apple_pay",
-//     "data": {
-//       "merchantIdentifier": "merchant.com.sams.fish",
-//       "displayName": "Sam's Fish",
-//       "merchantCapabilities": ["3DS", "debit", "credit"],
-//       "supportedNetworks": ["amex", "visa", "discover", "masterCard"],
-//       "countryCode": "US",
-//       "currencyCode": "USD",
-//       "requiredBillingContactFields": ["post"],
-//       "requiredShippingContactFields": ["post", "phone", "email", "name"],
-//       "shippingMethods": [
-//         {
-//           "amount": "0.00",
-//           "detail": "Available within an hour",
-//           "identifier": "in_store_pickup",
-//           "label": "In-Store Pickup"
-//         },
-//         {
-//           "amount": "4.99",
-//           "detail": "5-8 Business Days",
-//           "identifier": "flat_rate_shipping_id_2",
-//           "label": "UPS Ground"
-//         },
-//         {
-//           "amount": "29.99",
-//           "detail": "1-3 Business Days",
-//           "identifier": "flat_rate_shipping_id_1",
-//           "label": "FedEx Priority Mail"
-//         }
-//       ]
-//     }
-//   } ''';
-
 class AddressScreen extends StatefulWidget {
   static const String routeName = '/address';
   final String totalAmount;
@@ -148,20 +107,20 @@ class _AddressScreenState extends State<AddressScreen> {final TextEditingControl
   final _addressFormKey = GlobalKey<FormState>();
 
   String addressToBeUsed = "";
-  // List<PaymentItem> paymentItems = [];
+  List<PaymentItem> paymentItems = [];
 
-  // final AddressServices addressServices = AddressServices();
+  final AddressServices addressServices = AddressServices();
 
   @override
   void initState() {
     super.initState();
-    // paymentItems.add(
-    //   PaymentItem(
-    //     amount: widget.totalAmount,
-    //     label: 'Total Amount',
-    //     status: PaymentItemStatus.final_price,
-    //   ),
-    // );
+    paymentItems.add(
+      PaymentItem(
+        amount: widget.totalAmount,
+        label: 'Total Amount',
+        status: PaymentItemStatus.final_price,
+      ),
+    );
   }
 
   @override
@@ -174,33 +133,33 @@ class _AddressScreenState extends State<AddressScreen> {final TextEditingControl
   }
 
   void onApplePayResult(res) {
-    // if (Provider.of<UserProvider>(context, listen: false)
-    //     .user
-    //     .address
-    //     .isEmpty) {
-    //   addressServices.saveUserAddress(
-    //       context: context, address: addressToBeUsed);
-    // }
-    // addressServices.placeOrder(
-    //   context: context,
-    //   address: addressToBeUsed,
-    //   totalSum: double.parse(widget.totalAmount),
-    // );
+    if (Provider.of<UserProvider>(context, listen: false)
+        .user
+        .address
+        .isEmpty) {
+      addressServices.saveUserAddress(
+          context: context, address: addressToBeUsed);
+    }
+    addressServices.placeOrder(
+      context: context,
+      address: addressToBeUsed,
+      totalSum: double.parse(widget.totalAmount),
+    );
   }
 
   void onGooglePayResult(res) {
-    // if (Provider.of<UserProvider>(context, listen: false)
-    //     .user
-    //     .address
-    //     .isEmpty) {
-    //   addressServices.saveUserAddress(
-    //       context: context, address: addressToBeUsed);
-    // }
-    // addressServices.placeOrder(
-    //   context: context,
-    //   address: addressToBeUsed,
-    //   totalSum: double.parse(widget.totalAmount),
-    // );
+    if (Provider.of<UserProvider>(context, listen: false)
+        .user
+        .address
+        .isEmpty) {
+      addressServices.saveUserAddress(
+          context: context, address: addressToBeUsed);
+    }
+    addressServices.placeOrder(
+      context: context,
+      address: addressToBeUsed,
+      totalSum: double.parse(widget.totalAmount),
+    );
   }
 
   void payPressed(String addressFromProvider) {

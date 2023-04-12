@@ -28,7 +28,7 @@ const userSchema = mongoose.Schema({
             message: 'Please enter a long password'
         },
     },
-    adddress: {
+    address: {
         type: String,
         default: ''
     },
