@@ -19,7 +19,10 @@ class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
   // demo1 commit
   //demo 2 commit
+<<<<<<< HEAD
   // demo 3 commit
+=======
+>>>>>>> 4ea3df97d7a551597dd24766962d8df04bca558d
   @override
   State<MyApp> createState() => _MyAppState();
 }
