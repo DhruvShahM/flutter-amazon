@@ -8,7 +8,7 @@ import 'package:amazon_clone_tutorial/router.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-
+// write a code in a javascript
 void main() {
   runApp(MultiProvider(
       providers: [ChangeNotifierProvider(create: (context) => UserProvider())],
@@ -17,7 +17,7 @@ void main() {
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
-
+  // demo1 commit
   @override
   State<MyApp> createState() => _MyAppState();
 }
